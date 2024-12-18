@@ -53,7 +53,7 @@ export const newOrderSlice = createSlice({
       action: PayloadAction<TConstructorIngredient>
     ) => {
       const updatedIngredients = state.constructorItems.ingredients.filter(
-        (i) => i._id !== action.payload._id
+        (ingr) => ingr.id !== action.payload.id
       );
       state.constructorItems.ingredients = updatedIngredients;
     },
