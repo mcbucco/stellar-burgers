@@ -1,4 +1,4 @@
-import { orderBurgerApi } from '@api';
+import { orderBurgerApi } from '../../utils/burger-api';
 import {
   createAsyncThunk,
   createSlice,
@@ -34,7 +34,7 @@ export const placeOrder = createAsyncThunk(
 );
 
 export const newOrderSlice = createSlice({
-  name: 'order',
+  name: 'newOrder',
   initialState,
   reducers: {
     addConstructorItem: {
