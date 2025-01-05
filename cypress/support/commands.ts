@@ -1,3 +1,4 @@
+import { TIngredient } from './../../src/utils/types';
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -35,3 +36,20 @@
 //     }
 //   }
 // }
+
+
+Cypress.Commands.add('addIngredient', (num: number) => {
+  cy.get('[data-cy=ingredients] ul')
+    .eq(num)
+    .contains('Добавить')
+    .click();
+});
+
+Cypress.Commands.add('closeModalUsingX', () => {
+  cy.get('[data-cy=close_modal]').click();
+  cy.get('[data-cy=modal]').should('not.exist');
+});
+
+Cypress.Commands.add('isModalOpened', () => {
+  cy.get('[data-cy=modal]').should('exist');
+})

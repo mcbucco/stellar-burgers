@@ -14,7 +14,7 @@ describe('New Order test', () => {
     );
     cy.setCookie('accessToken', mockTokens.accessToken);
     cy.viewport(1280, 768);
-    cy.visit('http://localhost:4000/');
+    cy.visit('');
   });
 
   afterEach(() => {
@@ -24,32 +24,23 @@ describe('New Order test', () => {
 
   it('Adding order', () => {
     //Собирается бургер
-    cy.get('[data-cy=ingredients] ul')
-      .eq(0)
-      .contains('Добавить')
-      .click();
-    cy.get('[data-cy=ingredients] ul')
-      .eq(1)
-      .contains('Добавить')
-      .click();
-    cy.get('[data-cy=ingredients] ul')
-      .eq(2)
-      .contains('Добавить')
-      .click();
+    cy.addIngredient(0);
+    cy.addIngredient(1);
+    cy.addIngredient(2);
     
     //Вызывается клик по кнопке «Оформить заказ»
     cy.get('[data-cy=place_order]')
       .click();
 
     //Проверяется, что модальное окно открылось и номер заказа верный
-    cy.get('[data-cy=modal]').should('exist');
+    cy.get('[data-cy=modal]').as('modal');
+    cy.get('@modal').should('exist');
     cy.get('[data-cy=order_number]')
       .contains('64775')
       .should('exist');
 
     //Закрывается модальное окно и проверяется успешность закрытия
-    cy.get('[data-cy=close_modal]').click();
-    cy.get('[data-cy=modal]').should('not.exist');
+    cy.closeModalUsingX();
     
     //Проверяется, что конструктор пуст
     cy.get('[data-cy=bun_top]').should('not.exist');

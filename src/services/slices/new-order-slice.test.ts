@@ -3,6 +3,7 @@ import { mockIngredients } from '../../utils/mockData';
 import {
   addConstructorItem,
   deleteConstructorItem,
+  initialState,
   moveDown,
   moveUp,
   newOrderSlice
@@ -10,15 +11,6 @@ import {
 
 describe('New Order (Constructor) Slice Test', () => {
   describe('Adding / Deleting Ingredients', () => {
-    const initialState = {
-      constructorItems: {
-        bun: null,
-        ingredients: []
-      },
-      orderRequest: false,
-      orderModalData: null,
-      error: null
-    };
 
     test('Adding ingredient', () => {
       const stateWithBun = newOrderSlice.reducer(
@@ -50,23 +42,21 @@ describe('New Order (Constructor) Slice Test', () => {
     });
   });
 
-  test('Moving Ingredients', () => {
+  test('Moving ingredients', () => {
     const testIngredients = [
       { ...mockIngredients[1], id: nanoid() },
       { ...mockIngredients[2], id: nanoid() }
     ];
 
-    const initialState = {
+    const state = {
+      ...initialState,
       constructorItems: {
         bun: { ...mockIngredients[0], id: nanoid() },
         ingredients: testIngredients
       },
-      orderRequest: false,
-      orderModalData: null,
-      error: null
     };
 
-    const newState = newOrderSlice.reducer(initialState, moveDown(0));
+    const newState = newOrderSlice.reducer(state, moveDown(0));
     expect(newState.constructorItems.ingredients).toStrictEqual([
       testIngredients[1],
       testIngredients[0]

@@ -1,5 +1,6 @@
 import {
   getUser,
+  initialState,
   loginUser,
   logOutUser,
   registerUser,
@@ -29,24 +30,23 @@ const errorMessage = 'Test Error';
 
 describe('User Slice Tests', () => {
   describe('Update & Log-out tests', () => {
-    const initialState = {
+    const state = {
+      ...initialState,
       isAuthed: true,
       isAuthChecked: true,
       user: {
         name: 'testName',
         email: 'testEmail'
-      },
-      loginError: null,
-      loginRequest: false
+      }
     };
 
     test('Log-out test', () => {
-      const state = userSlice.reducer(initialState, {
+      const newState = userSlice.reducer(state, {
         type: logOutUser.fulfilled.type,
         payload: null
       });
-      expect(state.isAuthed).toBe(false);
-      expect(state.user).toEqual({
+      expect(newState.isAuthed).toBe(false);
+      expect(newState.user).toEqual({
         name: '',
         email: ''
       });
@@ -57,11 +57,11 @@ describe('User Slice Tests', () => {
         name: 'newTestName',
         email: 'newTestEmail'
       };
-      const state = userSlice.reducer(initialState, {
+      const newState = userSlice.reducer(state, {
         type: updateUserData.fulfilled.type,
         payload: { user: newUserData }
       });
-      expect(state.user).toEqual(newUserData);
+      expect(newState.user).toEqual(newUserData);
     });
   });
 

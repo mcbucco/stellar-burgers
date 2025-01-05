@@ -18,7 +18,7 @@ type TOrderState = {
   error: null | string;
 };
 
-const initialState: TOrderState = {
+export const initialState: TOrderState = {
   constructorItems: {
     bun: null,
     ingredients: []
