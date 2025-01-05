@@ -6,9 +6,9 @@ import {
   TLoginData,
   TRegisterData,
   updateUserApi
-} from '@api';
+} from '../../utils/burger-api';
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { TUser } from '@utils-types';
+import { TUser } from '../../utils/types';
 import { getCookie } from '../../utils/cookie';
 import { eraseTokens, setTokens } from '../../utils/utils';
 import { electron } from 'webpack';
@@ -64,7 +64,7 @@ type TUserState = {
   loginRequest: boolean;
 };
 
-const initialState: TUserState = {
+export const initialState: TUserState = {
   isAuthed: false,
   isAuthChecked: false,
   user: {

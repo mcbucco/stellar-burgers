@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "name": "New Test Order",
+  "order": {
+    "_id": "677a9a00750864001d37732b",
+    "ingredients": [
+      "643d69a5c3f7b9001cfa093c",
+      "643d69a5c3f7b9001cfa093e",
+      "643d69a5c3f7b9001cfa0941",
+      "643d69a5c3f7b9001cfa0940",
+      "643d69a5c3f7b9001cfa093c"
+    ],
+    "owner": "677a99ff750864001d377329",
+    "status": "done",
+    "name": "Краторный био-марсианский люминесцентный метеоритный бургер",
+    "createdAt": "2025-01-05T14:41:04.990Z",
+    "updatedAt": "2025-01-05T14:41:06.105Z",
+    "number": 64775
+  }
+}
